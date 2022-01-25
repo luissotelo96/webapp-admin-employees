@@ -1,0 +1,50 @@
+﻿@page
+@model AdminEmployees2.Pages.Employees.ListModel
+@{
+}
+
+<h2>Employees List</h2>
+<form method = "get">
+    <div class="form-group">
+        <div class="input-group-append">
+            <input type="search" class="form-control"
+                asp-for = "SearchTerm"/>
+            <div class="input-group-append">
+                <button class="btn btn-secondary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Document</th>
+            <th>Area</th>
+            <th>SubArea</th>
+            <th>Detail</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var employee in Model.Employees)
+        {
+            <tr>
+                <td>@employee.Name</td>
+                <td>@employee.Document</td>
+                <td>@employee.Area.Name</td>
+                <td>@employee.SubArea.Name</td>
+                <td>
+                    <a class = "btn btn-lg"
+                        asp-page = "./Detail"
+                        asp-route-employeeId = "@employee.Id">
+                        <i class="fas fa-search-plus"></i>
+                    </a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
